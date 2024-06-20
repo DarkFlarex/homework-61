@@ -1,9 +1,49 @@
-.ShowCountry-Info-flag{
-    width: 100px;
-    height: 100px;
+.ShowCountry{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #D1B292;
+    border-radius: 10px;
+    font-size: 18px;
+    width: 50%;
+}
+
+.ShowCountry-main{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.ShowCountry-main-Info{
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.ShowCountry-main-Info-Capital,
+.ShowCountry-main-Info-Population {
+    margin-bottom: 15px;
+}
+
+.ShowCountry-border{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.country-image{
+    width: 250px;
+    height: auto;
 }
 
 .Borders{
     display: flex;
     flex-direction: column;
+
+}
+
+.Border{
+    text-align: start;
+    margin-bottom: 5px;
 }

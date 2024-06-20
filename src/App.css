@@ -1,6 +1,12 @@
+body{
+  background: #30333A;
+}
+
 #root {
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 150px auto 0 ;
   padding: 2rem;
   text-align: center;
+  background: #503f37;
+  border-radius: 10px;
 }

@@ -5,7 +5,7 @@ export interface Props {
     onClick: React.MouseEventHandler;
 }
 
-const Countries:React.FC<Props> = ({name,onClick}) => {
+const Country:React.FC<Props> = ({name,onClick}) => {
     return (
         <span className="country" onClick={onClick}>
             {name}
@@ -13,4 +13,4 @@ const Countries:React.FC<Props> = ({name,onClick}) => {
     );
 };
 
-export default Countries;
+export default Country;

@@ -41,7 +41,13 @@ const ChooseCountries = () => {
                     />
                 ))}
             </div>
-           <ShowCountry alpha3Code={selectedCountryAlphaCode} />
+            <div className="ShowCountry">
+                {selectedCountryAlphaCode === null ? (
+                    <div className="ShowCountry-missing">Выберите страну</div>
+                ) : (
+                    <ShowCountry alpha3Code={selectedCountryAlphaCode}/>
+                )}
+            </div>
         </div>
 
     );

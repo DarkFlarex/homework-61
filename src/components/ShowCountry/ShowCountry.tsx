@@ -35,7 +35,7 @@ const ShowCountry:React.FC<Props> = ({alpha3Code}) => {
     }, [fetchCountry]);
 
     return country && (
-        <div className="ShowCountry">
+        <>
             <div className="ShowCountry-main">
                 <div className="ShowCountry-main-Info">
                     <h1>{country.name}</h1>
@@ -68,7 +68,7 @@ const ShowCountry:React.FC<Props> = ({alpha3Code}) => {
                 </ul>
             </div>
 
-        </div>
+        </>
     );
 };
 

@@ -1,5 +1,5 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {ApiCountry} from "../../types";
+import React, {useCallback, useEffect, useState} from "react";
+import {ApiCountries, ApiCountry} from "../../types";
 import axios from "axios";
 import {BASE_URL, COUNTRY_ALPHA_URL} from "../../constans";
 
@@ -9,11 +9,23 @@ interface Props{
 
 const ShowCountry:React.FC<Props> = ({alpha3Code}) => {
     const [country, setCountry]= useState<null | ApiCountry >(null)
+    const [borderCountries, setBorderCountries] = useState<ApiCountries[]>([]);
 
     const fetchCountry = useCallback( async ()=>{
         if(alpha3Code !== null){
             const {data: country} = await axios.get<ApiCountry>(BASE_URL + COUNTRY_ALPHA_URL + alpha3Code);
             setCountry(country);
+
+            const promises = country.borders.map(async (borderAlpha) => {
+                const { data: borderCountry } = await axios.get<ApiCountries>(BASE_URL + COUNTRY_ALPHA_URL + borderAlpha);
+                return {
+                    alpha3Code: borderCountry.alpha3Code,
+                    name: borderCountry.name
+                };
+            });
+
+            const NewBorders = await Promise.all(promises);
+            setBorderCountries(NewBorders);
         }
     },[alpha3Code]);
 
@@ -22,17 +34,28 @@ const ShowCountry:React.FC<Props> = ({alpha3Code}) => {
     }, [fetchCountry]);
 
     return country && (
-            <div className="ShowCountry">
-                <div>
+        <div className="ShowCountry">
+            <div className="ShowCountry-main">
+                <div className="ShowCountry-main-Info">
                     <h1>{country.name}</h1>
                     <span>Capital:{country.capital}</span>
                     <span>Population:{country.population}</span>
                 </div>
-
+                <div className="ShowCountry-main-Info-img">
+                    <img src={country.flags.png} alt={country.name} className="country-image"/>
+                </div>
             </div>
 
-    )
-        ;
+            <ul className="Borders">
+                {borderCountries.map((border) => (
+                    <li
+                        key={border.alpha3Code}>
+                        {border.name}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
 };
 
 export default ShowCountry;

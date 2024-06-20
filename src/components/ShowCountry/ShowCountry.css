@@ -1,0 +1,9 @@
+.ShowCountry-Info-flag{
+    width: 100px;
+    height: 100px;
+}
+
+.Borders{
+    display: flex;
+    flex-direction: column;
+}

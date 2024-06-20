@@ -8,6 +8,8 @@ export interface ApiCountry{
     name:string;
     capital:string;
     population:number;
-    flags:string;
-    borders:string;
+    flags: {
+        png: string;
+    };
+    borders: string[];
 }
